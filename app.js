@@ -1,39 +1,31 @@
+let timerDisplay = document.getElementById("timer");
+let startBtn = document.getElementById("start");
+let stopBtn = document.getElementById("stop");
+let resetBtn = document.getElementById("reset");
+let shortBreakBtn = document.getElementById("short-break");
+let longBreakBtn = document.getElementById("long-break");
+
+let timeLeft = 1500; // 5 minutes in seconds
 let timer;
-let isRunning = false;
-let currentTime = 0;
-let mode = 'pomodoro';
-
-const timerDisplay = document.getElementById('timer-display');
-const startBtn = document.getElementById('start-btn');
-const stopBtn = document.getElementById('stop-btn');
-const resetBtn = document.getElementById('reset-btn');
-const shortBreakBtn = document.getElementById('short-break-btn');
-const longBreakBtn = document.getElementById('long-break-btn');
-
-const modes = {
-    pomodoro: 25 * 60,
-    shortBreak: 5 * 60,
-    longBreak: 15 * 60
-};
+let running = false;
 
 function updateDisplay() {
-    const hours = Math.floor(currentTime / 3600);
-    const minutes = Math.floor((currentTime % 3600) / 60);
-    const seconds = currentTime % 60;
-    timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    timerDisplay.textContent = ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
 }
 
 function startTimer() {
-    if (!isRunning) {
-        isRunning = true;
+    if (!running) {
+        running = true;
         timer = setInterval(() => {
-            if (currentTime > 0) {
-                currentTime--;
+            if (timeLeft > 0) {
+                timeLeft--;
                 updateDisplay();
             } else {
                 clearInterval(timer);
-                isRunning = false;
-                alert('Time is up!');
+                running = false;
+                alert("Time's up!");
             }
         }, 1000);
     }
@@ -41,25 +33,32 @@ function startTimer() {
 
 function stopTimer() {
     clearInterval(timer);
-    isRunning = false;
+    running = false;
 }
 
 function resetTimer() {
     clearInterval(timer);
-    isRunning = false;
-    currentTime = modes[mode];
+    running = false;
+    timeLeft = 1500;
     updateDisplay();
 }
 
-function setMode(newMode) {
-    mode = newMode;
+function shortBreak() {
     resetTimer();
+    timeLeft = 300; // 5-minute break
+    updateDisplay();
 }
 
-startBtn.addEventListener('click', startTimer);
-stopBtn.addEventListener('click', stopTimer);
-resetBtn.addEventListener('click', resetTimer);
-shortBreakBtn.addEventListener('click', () => setMode('shortBreak'));
-longBreakBtn.addEventListener('click', () => setMode('longBreak'));
+function longBreak() {
+    resetTimer();
+    timeLeft = 900; // 15-minute break
+    updateDisplay();
+}
 
-setMode('pomodoro');
+startBtn.addEventListener("click", startTimer);
+stopBtn.addEventListener("click", stopTimer);
+resetBtn.addEventListener("click", resetTimer);
+shortBreakBtn.addEventListener("click", shortBreak);
+longBreakBtn.addEventListener("click", longBreak);
+
+updateDisplay();
