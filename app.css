@@ -1,33 +1,64 @@
-h1, #timer-display {
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
     text-align: center;
-    font-size: 50px;
-    margin-top: 50px;
-    color: black;
-    font-weight: 200;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.heading-1 {
+    font-size: 30px;
+    color: #333;
+}
+
+h2 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 button {
-    color: white;
-    padding: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
 }
 
-#start-btn {
-    background-color: rgb(35, 240, 35);
+#start {
+    background-color: green;
+    color: white;
 }
 
-#stop-btn {
-    background-color: rgb(250, 75, 75);
+#stop {
+    background-color: red;
+    color: white;
 }
 
-#reset-btn {
-    background-color: rgb(236, 230, 230);
+#reset {
+    background-color: gray;
+    color: white;
 }
 
-#short-break-btn {
-    background-color: rgb(11, 228, 240);
+#short-break {
+    background-color: lightblue;
+    color: white;
 }
 
-#long-break-btn {
-    background-color: rgb(224, 50, 175);
+#long-break {
+    background-color: purple;
+    color: white;
 }
